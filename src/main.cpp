@@ -8,6 +8,7 @@ Servo servo_ldr;
 #define servoldr 10
 #define sensorPininduktif 2
 #define sensorPinir 3
+#define pinLDR 4
 
 void setup() {
   servo_induktif.attach(servoinduktif);
