@@ -8,9 +8,9 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "c:/Users/M Iqbal/Documents/PlatformIO/Projects/JARKOM/include",
-                "c:/Users/M Iqbal/Documents/PlatformIO/Projects/JARKOM/src",
-                "c:/Users/M Iqbal/Documents/PlatformIO/Projects/JARKOM/.pio/libdeps/uno/Servo/src",
+                "c:/Users/M Iqbal/Documents/TUGAS KULIAH/SEMESTER3/JARKOM/WasteTrash/include",
+                "c:/Users/M Iqbal/Documents/TUGAS KULIAH/SEMESTER3/JARKOM/WasteTrash/src",
+                "c:/Users/M Iqbal/Documents/TUGAS KULIAH/SEMESTER3/JARKOM/WasteTrash/.pio/libdeps/uno/Servo/src",
                 "C:/Users/M Iqbal/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "C:/Users/M Iqbal/.platformio/packages/framework-arduino-avr/variants/standard",
                 "C:/Users/M Iqbal/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
@@ -23,9 +23,9 @@
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "c:/Users/M Iqbal/Documents/PlatformIO/Projects/JARKOM/include",
-                    "c:/Users/M Iqbal/Documents/PlatformIO/Projects/JARKOM/src",
-                    "c:/Users/M Iqbal/Documents/PlatformIO/Projects/JARKOM/.pio/libdeps/uno/Servo/src",
+                    "c:/Users/M Iqbal/Documents/TUGAS KULIAH/SEMESTER3/JARKOM/WasteTrash/include",
+                    "c:/Users/M Iqbal/Documents/TUGAS KULIAH/SEMESTER3/JARKOM/WasteTrash/src",
+                    "c:/Users/M Iqbal/Documents/TUGAS KULIAH/SEMESTER3/JARKOM/WasteTrash/.pio/libdeps/uno/Servo/src",
                     "C:/Users/M Iqbal/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "C:/Users/M Iqbal/.platformio/packages/framework-arduino-avr/variants/standard",
                     "C:/Users/M Iqbal/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
