@@ -1,0 +1,2 @@
+# WasteTrash
+Code alat pemilah
