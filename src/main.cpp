@@ -8,7 +8,7 @@ Servo servo_ldr;
 #define servoldr 10
 #define sensorPininduktif 2
 #define sensorPinir 3
-#define pinLDR 4
+#define sensorPinldr 4
 
 void setup() {
   servo_induktif.attach(servoinduktif);
@@ -17,6 +17,7 @@ void setup() {
   servo_ldr.write(90);
   pinMode(sensorPininduktif, INPUT);
   pinMode(sensorPinir, INPUT);
+  pinMode(sensorPinldr, INPUT);
 }
 
 void loop() {
@@ -35,6 +36,15 @@ void loop() {
       servo_induktif.write(0);
       delay(1000);
       servo_induktif.write(90);
+    }
+    if (digitalRead(sensorPinldr) == HIGH){
+      servo_ldr.write(180);
+      delay(1000);
+      servo_ldr.write(90);
+    } else {
+      servo_ldr.write(0);
+      delay(1000);
+      servo_ldr.write(90);
     }
   } else {
     // Jika tidak ada objek yang terdeteksi oleh sensor IR, reset kedua servomotor ke posisi default
