@@ -25,36 +25,43 @@ void loop() {
   int nilaiSensorIR = digitalRead(sensorPinir);
 
   if (nilaiSensorIR == LOW) {
-    delay(1000);
     // Jika ada objek yang terdeteksi oleh sensor IR
+    delay(3000); // Delay 3 detik
+
+    // Baca sensor induktif
     if (digitalRead(sensorPininduktif) == HIGH) {
-      // Lakukan aksi untuk servo sensor induktif
+      // Jika ada barang logam terdeteksi oleh sensor induktif
       servo_induktif.write(180);
-      delay(2000);
+      delay(3000); // Delay 3 detik
       servo_induktif.write(90);
+      return; // Program selesai
     } else {
-      // Lakukan aksi default untuk servo sensor induktif
+      // Jika tidak ada barang logam terdeteksi oleh sensor induktif
       servo_induktif.write(0);
-      delay(2000);
+      delay(3000); // Delay 3 detik
       servo_induktif.write(90);
-    //////
-          delay (2000);
-        if (digitalRead(sensorPinldr) == HIGH){
-          servo_ldr.write(180);
-          delay(2000);
-          servo_ldr.write(90);
-        } else {
-          servo_ldr.write(0);
-          delay(2000);
-          servo_ldr.write(90);
-    }  
+      delay(5000); // Delay 5 detik
     }
 
-  } else {
-    // Jika tidak ada objek yang terdeteksi oleh sensor IR, reset kedua servomotor ke posisi default
-    servo_induktif.write(90);
-    servo_ldr.write(90);
+    // Baca sensor LDR
+    if (digitalRead(sensorPinldr) == HIGH) {
+      // Jika ada cahaya terdeteksi oleh sensor LDR
+      servo_ldr.write(180);
+      delay(3000); // Delay 3 detik
+      servo_ldr.write(90);
+      return; // Program selesai
+    } else {
+      // Jika tidak ada cahaya terdeteksi oleh sensor LDR
+      servo_ldr.write(0);
+      delay(3000); // Delay 3 detik
+      servo_ldr.write(90);
+      return; // Program selesai
+    }
   }
+  
+  // Jika tidak ada objek yang terdeteksi oleh sensor IR
+  servo_induktif.write(90);
+  servo_ldr.write(90);
 
   delay(1000);
 }
