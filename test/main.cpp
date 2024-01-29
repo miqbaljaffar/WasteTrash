@@ -1,40 +1,67 @@
-// Inisialisasi servo dan sensor
 #include <Arduino.h>
 #include <Servo.h>
 
-Servo myservo;
-int sensorPin = 2; // Pin untuk sensor induktif
-int sensorValue = 0; // Nilai yang dibaca oleh sensor induktif
+Servo servo_induktif;
+Servo servo_ldr;
+
+#define servoinduktif 9
+#define servoldr 10
+#define sensorPininduktif 2
+#define sensorPinir 5
+#define sensorPinldr 7
 
 void setup() {
-  // Memasang servo pada pin 9
-  myservo.attach(9);
-  // Mengatur pin sensor sebagai input
-  pinMode(sensorPin, INPUT);
-  // Menginisialisasi komunikasi serial dengan baud rate 9600
-  Serial.begin(9600);
-  // Mengatur posisi awal servo menjadi 90 derajat (bukan 0 derajat)
-  myservo.write(90);
+  servo_induktif.attach(servoinduktif);
+  servo_ldr.attach(servoldr);
+  servo_induktif.write(90);
+  servo_ldr.write(90);
+  pinMode(sensorPininduktif, INPUT);
+  pinMode(sensorPinir, INPUT);
+  pinMode(sensorPinldr, INPUT);
 }
 
 void loop() {
-  // Baca nilai dari pin digital 13
-  bool data = digitalRead(13);
+  // Baca sensor IR
+  int nilaiSensorIR = digitalRead(sensorPinir);
 
-  if (data == HIGH) { // Ubah menjadi HIGH karena digitalRead() mengembalikan nilai HIGH atau LOW
-    myservo.write(180); // Ganti servo.write() menjadi myservo.write()
-    delay(3000);
-    myservo.write(90); // Ganti servo.write() menjadi myservo.write()
-  } else { // Jika bukan HIGH (maka LOW atau nilai lainnya)
-    myservo.write(0); // Ganti servo.write() menjadi myservo.write()
-    delay(3000);
-    myservo.write(90); // Ganti servo.write() menjadi myservo.write()
+  if (nilaiSensorIR == LOW) {
+    // Jika ada objek yang terdeteksi oleh sensor IR
+    delay(3000); // Delay 3 detik
+
+    // Baca sensor induktif
+    if (digitalRead(sensorPininduktif) == HIGH) {
+      // Jika ada barang logam terdeteksi oleh sensor induktif
+      servo_induktif.write(0);
+      delay(3000); // Delay 3 detik
+      servo_induktif.write(90);
+      return; // Program selesai
+    } else {
+      // Jika tidak ada barang logam terdeteksi oleh sensor induktif
+      servo_induktif.write(180);
+      delay(3000); // Delay 3 detik
+      servo_induktif.write(90);
+      delay(5000); // Delay 5 detik
+    }
+
+    // Baca sensor LDR
+    if (digitalRead(sensorPinldr) == HIGH) {
+      // Jika ada cahaya terdeteksi oleh sensor LDR
+      servo_ldr.write(180);
+      delay(3000); // Delay 3 detik
+      servo_ldr.write(90);
+      return; // Program selesai
+    } else {
+      // Jika tidak ada cahaya terdeteksi oleh sensor LDR
+      servo_ldr.write(0);
+      delay(3000); // Delay 3 detik
+      servo_ldr.write(90);
+      return; // Program selesai
+    }
   }
+  
+  // Jika tidak ada objek yang terdeteksi oleh sensor IR
+  servo_induktif.write(90);
+  servo_ldr.write(90);
 
-  // Baca nilai dari sensor induktif
-  sensorValue = analogRead(sensorPin);
-
-  // Mengirimkan nilai sensor ke port serial
-  Serial.print("Sensor value: ");
-  Serial.println(sensorValue);
+  delay(1000);
 }

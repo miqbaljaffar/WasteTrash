@@ -21,7 +21,7 @@ void setup() {
 }
 
 void loop() {
-  // Baca sensor IR
+  // Baca sensor IRz
   int nilaiSensorIR = digitalRead(sensorPinir);
 
   if (nilaiSensorIR == LOW) {
@@ -31,13 +31,13 @@ void loop() {
     // Baca sensor induktif
     if (digitalRead(sensorPininduktif) == HIGH) {
       // Jika ada barang logam terdeteksi oleh sensor induktif
-      servo_induktif.write(180);
+      servo_induktif.write(0);
       delay(3000); // Delay 3 detik
       servo_induktif.write(90);
       return; // Program selesai
     } else {
       // Jika tidak ada barang logam terdeteksi oleh sensor induktif
-      servo_induktif.write(0);
+      servo_induktif.write(150);
       delay(3000); // Delay 3 detik
       servo_induktif.write(90);
       delay(5000); // Delay 5 detik
